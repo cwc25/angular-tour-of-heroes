@@ -12,6 +12,7 @@ export class HeroService {
 
   getHeros(): Observable<Hero[]> {
     this.messageService.addMessage("Hero Service: fetch rows");
+    console.log("hello");
     return Observable.of(HEROES);
   }
   getHeroById(id:number): Observable<Hero>{
