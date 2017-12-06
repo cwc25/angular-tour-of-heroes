@@ -13,7 +13,8 @@ export class HeroesComponent implements OnInit {
   heroes:Hero[];
   selectedHero: Hero;
  
-  constructor(private heroSerivce:HeroService, private messageService:MessageService) {
+  constructor(private heroSerivce:HeroService, 
+              private messageService:MessageService) {
     
    }  
 
@@ -28,5 +29,13 @@ export class HeroesComponent implements OnInit {
   getHeros():void{
     this.heroSerivce.getHeros()
     .subscribe(res =>this.heroes= res);
+  }
+  addHero(name1:string){
+    this.heroSerivce.addHero({name: name1} as Hero)
+                    .subscribe(hero=>this.heroes.push(hero));
+  }
+  deleteHero(hero:Hero):void{
+    this.heroes = this.heroes.filter(h=>h.id !== hero.id);
+    this.heroSerivce.deleteHero(hero).subscribe();
   }
 }
